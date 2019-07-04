@@ -25,8 +25,15 @@ sha256sums=('SKIP'
 
 prepare() {
     cd brave-browser
+    
+    # Prepare the environment
+    
+    npm install
+    npm run init
+    cd src/
+    # Try applying the patches here
 
-    patch -Np1 -i ../enable-vaapi.patch
+    patch -Np1 -i ../enable-vaapi.patch #FIXME : Need to find what level the source directory is.
 
     # Hack to prioritize python2 in PATH
     mkdir -p "${HOME}/bin"
@@ -37,9 +44,6 @@ prepare() {
 
 build() {
     cd brave-browser
-
-    npm install
-    npm run init
     npm run build Release
     # npm run create_dist Release --debug_build=false --official_build=true
 }
