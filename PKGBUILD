@@ -31,20 +31,20 @@ prepare() {
     
     patch -Np1 -i ../enablevaapiflag.patch
     
+     # Hack to prioritize python2 in PATH
+    mkdir -p "${HOME}/bin"
+    ln -s /usr/bin/python2 "${HOME}/bin/python"
+    ln -s /usr/bin/python2-config "${HOME}/bin/python-config"
+    export PATH="${HOME}/bin:${PATH}"
+    
     # Prepare the environment
     
     npm install
     npm run init
     cd src/
     # Try applying the patches here
-
-    patch -Np1 -i ../enable-vaapi.patch #FIXME : Need to find what level the source directory is.
-
-    # Hack to prioritize python2 in PATH
-    mkdir -p "${HOME}/bin"
-    ln -s /usr/bin/python2 "${HOME}/bin/python"
-    ln -s /usr/bin/python2-config "${HOME}/bin/python-config"
-    export PATH="${HOME}/bin:${PATH}"
+   #FIXME : Need to find what level the source directory is.
+    patch -Np1 -i ../enable-vaapi.patch 
 }
 
 build() {
