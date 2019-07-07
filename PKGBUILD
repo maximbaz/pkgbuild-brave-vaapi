@@ -14,10 +14,12 @@ provides=('brave')
 conflicts=('brave')
 source=("git+https://github.com/brave/brave-browser.git#tag=v${pkgver}"
         'enable-vaapi.patch'
+        'enablevaapiflag.patch'
         'brave-launcher'
         'brave.desktop'
         'logo.png')
 sha256sums=('SKIP'
+            '2b07eabd8b3d42456d2de44f6dca6cf2e98fa06fc9b91ac27966fca8295c5814'
             '2b07eabd8b3d42456d2de44f6dca6cf2e98fa06fc9b91ac27966fca8295c5814'
             'd3c9be4babc754271ad8d6169705ec319fa45d406184d7677fa83a4a2df49acf'
             '4c3dbceaf7d791f94d6e46c26c62a1b500bdf3a25a2ecf97a5075e86649b63ef'
@@ -25,6 +27,9 @@ sha256sums=('SKIP'
 
 prepare() {
     cd brave-browser
+    #This brave patch will go here
+    
+    patch -Np1 -i ../enablevaapiflag.patch
     
     # Prepare the environment
     
