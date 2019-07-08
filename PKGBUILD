@@ -47,6 +47,8 @@ prepare() {
     patch -Np1 -i "${srcdir}/chromium-vaapi-fix.patch"
 
     # Apply Brave Core patches
+    cd brave/	
+    patch -Np1 -i "${srcdir}/brave-build-fix.patch"
     
 }
 
