@@ -46,6 +46,9 @@ prepare() {
     # Apply Chromium patches
     cd src/
     patch -Np1 -i "${srcdir}/chromium-vaapi-fix.patch"
+    
+    #Hack it
+    sed -e 's/enable_distro_version_check = true/enable_distro_version_check = false/g' -i chrome/installer/linux/BUILD.gn
 }
 
 build() {
