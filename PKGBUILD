@@ -47,14 +47,14 @@ prepare() {
     patch -Np1 -i "${srcdir}/chromium-vaapi-fix.patch"
 
     # Apply Brave Core patches
-    
+    cd brave/
+    patch -Np1 -i "${srcdir}/brave-build-fix.patch"
 }
 
 build() {
     cd brave-browser
     # npm run build Release
-    # Try this:
-    npm run create_dist Release --debug_build=false --enable_distro_version_check=false
+    npm run create_dist Release --debug_build=false --official_build=true
 }
 
 package() {
