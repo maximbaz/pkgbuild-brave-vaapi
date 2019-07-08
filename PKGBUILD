@@ -1,7 +1,9 @@
-pkgname=brave-vaapi
+# Maintainer: Maxim Baz <$pkgname at maximbaz dot com>
+
+pkgname=brave
 pkgver=0.66.99
 pkgrel=1
-pkgdesc='A web browser that stops ads and trackers by default. With VA-API enabled.'
+pkgdesc='A web browser that stops ads and trackers by default'
 arch=('x86_64')
 url='https://www.brave.com/download'
 license=('custom')
@@ -10,8 +12,6 @@ makedepends=('git' 'npm' 'python2' 'icu' 'glibc' 'gperf' 'java-runtime-headless'
 optdepends=('cups: Printer support'
             'pepper-flash: Adobe Flash support'
             'libgnome-keyring: Enable GNOME keyring support')
-provides=('brave')
-conflicts=('brave')
 source=("git+https://github.com/brave/brave-browser.git#tag=v${pkgver}"
         'chromium-vaapi-fix.patch'
         'brave-vaapi-enable.patch'
@@ -46,7 +46,7 @@ prepare() {
     # Apply Chromium patches
     cd src/
     patch -Np1 -i "${srcdir}/chromium-vaapi-fix.patch"
-    
+
     #Hack it
     sed -e 's/enable_distro_version_check = true/enable_distro_version_check = false/g' -i chrome/installer/linux/BUILD.gn
     # This is not the best way to set chrome gyp flags imo
@@ -61,7 +61,7 @@ build() {
 
 package() {
     install -d -m0755 "${pkgdir}/usr/lib"
-    cp -a --reflink=auto brave-browser/src/out/Release "${pkgdir}/usr/lib/brave-vaapi"
+    cp -a --reflink=auto brave-browser/src/out/Release "${pkgdir}/usr/lib/brave"
 
     install -Dm0755 brave-launcher "${pkgdir}/usr/bin/brave"
     install -Dm0644 -t "${pkgdir}/usr/share/applications/" brave.desktop
