@@ -49,6 +49,8 @@ prepare() {
     
     #Hack it
     sed -e 's/enable_distro_version_check = true/enable_distro_version_check = false/g' -i chrome/installer/linux/BUILD.gn
+    # This is not the best way to set chrome gyp flags imo
+    sed -e 's/treat_warnings_as_errors = true/treat_warnings_as_errors = false/g' -i build/config/compiler/BUILD.gn
 }
 
 build() {
