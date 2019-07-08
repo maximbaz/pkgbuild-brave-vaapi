@@ -1,32 +1,24 @@
-From 248fd148b5aa589281ee099f461c7b16dd480d31 Mon Sep 17 00:00:00 2001
-From: Ben Kero <bkero@bke.ro>
-Date: Thu, 7 Jun 2018 11:13:25 -0700
-Subject: [PATCH] Disable distro check for linux builds to fix failing builds
+From 57eca077053ee0f496f6b2a9a6826b7f0d444a01 Mon Sep 17 00:00:00 2001
+From: Akarshan Biswas <akarshanbiswas@fedoraproject.org>
+Date: Mon, 8 Jul 2019 18:32:46 +0530
+Subject: [PATCH] Add toggle for distro version check
 
-This is a workaround for the issue described in https://github.com/brave/brave-browser/issues/305
 ---
- patches/chrome-installer-linux-BUILD.gn.patch | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
+ lib/config.js | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/patches/chrome-installer-linux-BUILD.gn.patch b/patches/chrome-installer-linux-BUILD.gn.patch
-index 6d2997f318..66005ac4cb 100644
---- a/patches/chrome-installer-linux-BUILD.gn.patch
-+++ b/patches/chrome-installer-linux-BUILD.gn.patch
-@@ -1,8 +1,15 @@
- diff --git a/chrome/installer/linux/BUILD.gn b/chrome/installer/linux/BUILD.gn
--index fbabd6c3414f5cb69cf4c7ab6ef5f957cb391376..ab6bf7f0d65ae03730d977b17782d52ad3c30736 100644
-+index fbabd6c3414f5cb69cf4c7ab6ef5f957cb391376..9857f33bf644c66dff4647045a750035677aec26 100644
- --- a/chrome/installer/linux/BUILD.gn
- +++ b/chrome/installer/linux/BUILD.gn
--@@ -25,11 +25,10 @@ declare_args() {
-+@@ -19,17 +19,16 @@ if (current_cpu == "x86" || current_cpu == "x64") {
-+ declare_args() {
-+   # Enables checks that ensure the packages are installable on all supported
-+   # distributions.
-+-  enable_distro_version_check = true
-++  enable_distro_version_check = false
-+ }
-+
-  assert(is_linux)
-  
-  packaging_files_executables = [
+diff --git a/lib/config.js b/lib/config.js
+index 58c40af..3196f6c 100755
+--- a/lib/config.js
++++ b/lib/config.js
+@@ -102,6 +102,7 @@ Config.prototype.buildArgs = function () {
+     brave_referrals_api_key: this.braveReferralsApiKey,
+     enable_hangout_services_extension: this.enable_hangout_services_extension,
+     enable_cdm_host_verification: this.brave_enable_cdm_host_verification,
++    enable_distro_version_check: this.is_official_build
+   }
+ 
+   if (process.platform === 'darwin' && this.targetOS !== 'ios') {
+-- 
+2.21.0
+
