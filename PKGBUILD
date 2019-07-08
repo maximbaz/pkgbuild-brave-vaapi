@@ -22,7 +22,7 @@ source=("git+https://github.com/brave/brave-browser.git#tag=v${pkgver}"
 sha256sums=('SKIP'
             '83cca45acc2515b9c83f34844494a8788f85bb04c36834b88e905c490988d9bb'
             '2b07eabd8b3d42456d2de44f6dca6cf2e98fa06fc9b91ac27966fca8295c5814'
-            'b0e0e14cba969d0d63c7e6a3a98e29f382df2b77f3b39ebd574dc7d520719006'
+            '45c3ab1e7efc4508f87403446ddd8017c695ce669c8467353e255f2a8fb933c6'
             'd3c9be4babc754271ad8d6169705ec319fa45d406184d7677fa83a4a2df49acf'
             '4c3dbceaf7d791f94d6e46c26c62a1b500bdf3a25a2ecf97a5075e86649b63ef'
             '4a585cb8740f4c9ba267f0df19d894eb9fae1b9a6af4a3e44737b7d0bcbc104a')
