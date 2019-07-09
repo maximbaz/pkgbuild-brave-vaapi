@@ -53,8 +53,8 @@ prepare() {
 
 build() {
     cd brave-browser
-    # npm run build Release
-    npm run create_dist Release --debug_build=false --official_build=true
+    npm run build Release --debug_build=false --official_build=true
+    # npm run create_dist Release --debug_build=false --official_build=true
 }
 
 package() {
