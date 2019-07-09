@@ -72,7 +72,7 @@ package() {
     cd "${srcdir}"
     install -Dm0755 brave-launcher "${pkgdir}/usr/bin/brave"
     install -Dm0644 -t "${pkgdir}/usr/share/applications/" brave.desktop
-    install -Dm0644 -t "${pkgdir}/usr/share/pixmaps/brave.png" brave-browser/src/brave/app/theme/brave/product_logo_128.png
+    install -Dm0644 brave-browser/src/brave/app/theme/brave/product_logo_128.png "${pkgdir}/usr/share/pixmaps/brave.png"
     install -Dm0644 -t "${pkgdir}/usr/share/licenses/${pkgname}" brave-browser/LICENSE
     install -Dm0644 -t "${pkgdir}/usr/share/licenses/${pkgname}" brave-browser/src/brave/components/brave_sync/extension/brave-sync/node_modules/electron/dist/LICENSES.chromium.html
 }
