@@ -7,7 +7,7 @@ pkgdesc='A web browser that stops ads and trackers by default'
 arch=('x86_64')
 url='https://www.brave.com/download'
 license=('custom')
-depends=('gtk3' 'nss' 'alsa-lib' 'gconf' 'libxss' 'ttf-font' 'libva')
+depends=('gtk3' 'nss' 'alsa-lib' 'libxss' 'ttf-font' 'libva')
 makedepends=('git' 'npm' 'python2' 'icu' 'glibc' 'gperf' 'java-runtime-headless')
 optdepends=('cups: Printer support'
             'pepper-flash: Adobe Flash support'
@@ -48,8 +48,7 @@ prepare() {
 
 build() {
     cd brave-browser
-    npm run build Release --debug_build=false --official_build=true
-    # npm run create_dist Release --debug_build=false --official_build=true
+    npm run build Release
 }
 
 package() {
